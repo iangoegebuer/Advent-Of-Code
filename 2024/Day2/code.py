@@ -50,27 +50,7 @@ def checkSafeStarTwo(l):
       nums = numsFull.copy()
       nums.pop(j)
 #      print(nums)
-      for i in range(len(nums)):
-        if i == 0:
-          continue
-        np = int(nums[i])
-        nk = int(nums[i-1])
-        fp = np - nk
-        if fp == 0:
-          s = False
-          continue
-        fp = abs(fp)/fp
-        if i == 1:
-          f = np - nk
-          f = abs(f)/f
-        if abs(nk - np) == 0 or abs(nk - np) > 3:
-          s = False
-          s2 += 1
-          continue
-        if i > 1 and fp != f:
-          s = False
-          s2 += 1
-          continue
+      s = checkSafeStarOne(" ".join(nums))
       if s:
         print("Safe if skip %s" % (numsFull[j]))
         return True
@@ -98,8 +78,8 @@ with open(sys.argv[1], 'r') as file:
     if s2:
       safe2 += 1
 
-print(safe)
-print(safe2)
+print("Star 1: ",safe)
+print("Star 2: ", safe2)
 
 
 
